@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ pet.name }} {% endblock %}
+
+{% block content %}
+
+
+<div class="row justify-content-center">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success col-10" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+</div>
+
+
+<div class="container">
+    <h1 class="display-1 text-center">{{ pet.name }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-12"></div>
+            <div class="row">
+                <div class="col" id="pet-img-div">
+                    <img class="pet-img" src="{{ pet.photo_url }}" alt="{{ pet.name }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="pet-info" class="group col">
+            <p class="pet-info-p">Breed: {{ pet.species }}</p>
+            <p class="pet-info-p" id="pet-info-divider"> | </p>
+            <p class="pet-info-p">Age: {{ pet.age }}</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div>
+            <h2>About {{ pet.name }}</h2>
+        </div> 
+    </div> 
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <p>
+                {{ pet.notes }}
+            </p>        
+        </div> 
+    </div> 
+
+    <div class="row justify-content-center">
+        <div>
+            <a class="pet-btn btn btn-info btn-lg" href="/" role="button">Home</a>
+            <a class="pet-btn btn btn-danger btn-lg" href="/{{ pet.id }}/edit" role="button">Edit</a>
+        </div> 
+    </div> 
+
+</div>
+
+{% endblock %}

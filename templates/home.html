@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} Flask Adoption Agency {% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success col-10" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="page-title">
+    <p>The Flask Adoption Agency</p>
+</div>
+
+
+<div class="row">
+    {% for pet in pets %}
+    <div class="col mb-4 d-flex justify-content-center">
+        <div class="card" style="width: 18rem;">
+            <a href="/{{ pet.id }}"><img class="card-img-top" src="{{ pet.photo_url }}" alt="{{ pet.name }}"></a>
+            <div class="card-body">
+                
+                {% if pet.available %}
+                    <p class="card-text">{{ pet.name }} is available</p>
+                {% else %}
+                    <p class="card-text">{{ pet.name }} is not available</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="add-pet">
+    <a href="/add" class="btn btn-success" id="add-pet-btn">Add a Pet</a>
+</div>
+
+
+{% endblock %}

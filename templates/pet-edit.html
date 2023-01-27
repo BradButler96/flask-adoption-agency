@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit {{ pet.name }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="display-1 text-center">Edit {{ pet.name }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        {{ form.photo_url.label(class_="text-info") }}
+                        {{ form.photo_url(class_="form-control") }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        {{ form.notes.label(class_="text-info") }}
+                        {{ form.notes(class_="form-control") }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-1 col-md-2 col-sm-2 col-2" id="available-label">
+                        {{ form.available.label(class_="text-info") }}
+                    </div>
+
+                    <div class="form-group col-1">
+                        {{ form.available() }}
+                    </div>
+                </div>
+
+                <button class="edit-pet-btn btn btn-success">Submit</button>
+                <a href="/{{ pet.id }}" class="edit-pet-btn btn btn-danger">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
